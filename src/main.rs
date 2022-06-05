@@ -18,6 +18,8 @@ impl StreamHandler<Result<ws::Message, ws::ProtocolError>> for WsStruct {
                         code: CloseCode::Normal,
                         description: Some("Catch close operation.".to_string()),
                     }));
+                } else {
+                    ctx.text(text)
                 }
             }
             Ok(ws::Message::Close(_)) => {
